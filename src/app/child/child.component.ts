@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { InteractionService } from '../interaction.service';
 
 @Component({
   selector: 'app-child',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChildComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _interactionService: InteractionService) { }
 
-  ngOnInit(): void {
+  ngOnInit(){
+    this._interactionService.teacherMessage$
+    .subscribe(
+      message=>{
+        if(message==='Good moring'){
+          alert('Good morning teacher');
+        }else if (message==='Well done'){
+          alert('Thank you teacher');
+        }
+      }
+    );
   }
 
 }
